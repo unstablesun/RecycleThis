@@ -104,7 +104,7 @@ public class GemObject : MonoBehaviour
 
 		gemAnimSequence = DOTween.Sequence ().SetEase (Ease.InQuart);
 		gemAnimSequence.Append(transform.DOMove(new Vector3(endx, endy, z), speed));
-		gemAnimSequence.Append(transform.DOPunchPosition( new Vector3(0.0f, 0.1f, 0.0f), 1f, 4, 0.75f ).OnComplete(FallSequenceComplete));;
+		gemAnimSequence.Append(transform.DOPunchPosition( new Vector3(0.0f, 0.1f, 0.0f), 1f, 4, 0.75f ).OnComplete(FallSequenceComplete));
 		AnimState = eAnimState.Active;
 
 	}
@@ -123,7 +123,7 @@ public class GemObject : MonoBehaviour
 		gemAnimSequence = DOTween.Sequence ().SetEase (Ease.InQuart);
 		gemAnimSequence.Append(transform.DOMove(new Vector3(endx, endy, z), speed));
 		gemAnimSequence.Join(transform.DOScale(new Vector3(2f, 2f, 1f), speed));
-		gemAnimSequence.Append(transform.DOPunchPosition( new Vector3(0.0f, 0.1f, 0.0f), 1f, 4, 0.75f ).OnComplete(RemovalSequenceComplete));;
+		gemAnimSequence.Append(transform.DOPunchPosition( new Vector3(0.0f, 0.1f, 0.0f), 1f, 4, 0.75f ).OnComplete(RemovalSequenceComplete));
 		AnimState = eAnimState.Active;
 	}
 
@@ -134,6 +134,23 @@ public class GemObject : MonoBehaviour
 
 		AnimState = eAnimState.Ready;
 	}
+
+
+
+
+	public void StartFillAnim (float startx, float starty, float endx, float endy, float z, float speed) 
+	{
+		Debug.LogError("startX = " + startx + " StartY = " + starty);
+		//start pos
+		transform.position = new Vector3( startx, starty, z);
+
+		gemAnimSequence = DOTween.Sequence ().SetEase (Ease.InQuart);
+		gemAnimSequence.Append(transform.DOMove(new Vector3(endx, endy, z), speed));
+		gemAnimSequence.Append(transform.DOPunchPosition( new Vector3(0.0f, 0.1f, 0.0f), 1f, 4, 0.75f ).OnComplete(FallSequenceComplete));
+		AnimState = eAnimState.Active;
+
+	}
+
 
 
 

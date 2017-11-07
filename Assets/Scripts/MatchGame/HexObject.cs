@@ -68,7 +68,9 @@ public class HexObject : MonoBehaviour
 	public GameObject GemRef = null;
 
 	//[HideInInspector]
-	public GameObject NewHexRef = null;//this is a ref to the hexobject the gem will be falling to
+	public GameObject NewHexRef = null;//this is a ref to the hexobject the gem will be falling or moving to
+
+	public GameObject OffsetHexRef = null;//this is a ref to the hexobject the gem will be falling or moving to
 
 	//working scan
 	private int _scanColor = 0;
@@ -88,6 +90,7 @@ public class HexObject : MonoBehaviour
 	{
 		GemRef = null;
 		NewHexRef = null;
+		OffsetHexRef = null;
 	}
 
 	public void SetToNullObject () 
@@ -118,8 +121,12 @@ public class HexObject : MonoBehaviour
 	}
 	public void AttachGemNoPos (GameObject go) 
 	{
-		
-		GemRef = go;
+		Assert.IsNotNull(go);
+		//Assert.IsNull(GemRef);
+
+		if (GemRef == null) {
+			GemRef = go;
+		}
 	}
 
 	public void ClearGem () 
@@ -170,6 +177,24 @@ public class HexObject : MonoBehaviour
 		}
 
 	}
+
+	public void AttachOffsetHexRef (GameObject go) 
+	{
+		Assert.IsNotNull(go);
+		//Assert.IsNull(NewHexRef);
+
+		if(OffsetHexRef == null) {
+			OffsetHexRef = go;
+		} else {
+
+			HexObject hexObjectScript = OffsetHexRef.GetComponent<HexObject> ();
+			HexObject hexObjectScript2 = go.GetComponent<HexObject> ();
+
+			Debug.LogError("ERROR: AttachNewHexRef - ID = " + hexObjectScript.ID + "  ...trying to attach second NewHexRef with ID = " + hexObjectScript2.ID);
+		}
+
+	}
+
 
 		
 	public void AddLinkedObject(GameObject go)
@@ -224,6 +249,7 @@ public class HexObject : MonoBehaviour
 		return true;
 	}
 
+	//gem is moving from old hex to new hex
 	public bool MoveGemToNewHex()
 	{
 		//Assert.IsNotNull(NewHexRef);
@@ -278,6 +304,37 @@ public class HexObject : MonoBehaviour
 
 		return true;
 	}
+
+	//gem is already attached moving from relative position to this hex
+	public bool MoveGemToThisHex()
+	{
+		Assert.IsNotNull(OffsetHexRef);
+
+		if (OffsetHexRef != null) {
+
+			HexObject hexObjectScript = OffsetHexRef.GetComponent<HexObject> ();
+			Vector3 startpos = hexObjectScript.transform.position;
+
+			if(GemRef != null) {
+				GemObject gemObjectScript = GemRef.GetComponent<GemObject> ();
+				Debug.LogError("StartFillAnim");
+				gemObjectScript.StartFillAnim(startpos.x, startpos.y, transform.position.x, transform.position.y, -3f, 0.5f);
+			} else {
+				Debug.LogError("ASSERT MoveGemToThisHex GemRef == null");
+			}
+
+			OffsetHexRef = null;//no longer needed
+			//Debug.Log("MoveGemToNewHex This ID = " + ID + " to ID = " + hexObjectScript.ID + "   ... moving from x = " + transform.position.x + " y = " + transform.position.y + " :: to x = " + newpos.x + " y = " + newpos.y);
+
+			//gemObjectScript.transform.position = new Vector3(newpos.x, newpos.y, -3f);
+
+		} else {
+			return false;
+		}
+
+		return true;
+	}
+
 
 	public bool IsGemAnimating(int type)
 	{

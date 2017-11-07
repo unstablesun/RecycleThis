@@ -175,6 +175,14 @@ public partial class HexManager : MonoBehaviour
 		return null;
 	}
 
+	private HexObject getNextInColumnNoCheck(HexObject objectScript) 
+	{
+		List <GameObject> sublinkList = objectScript.HexLinkList;
+		HexObject objScript = sublinkList[0].GetComponent<HexObject>();
+		return objScript;
+	}
+
+
 	public bool QueryFallAnimationStillActive() 
 	{
 		bool active = false;
@@ -241,6 +249,24 @@ public partial class HexManager : MonoBehaviour
 		}			
 	}
 
+	private HexObject ScanColumnForTopHex(HexObject objectScript) 
+	{
+		HexObject objScript = objectScript;
+		while (objScript != null) {
+			
+			HexObject objNextScript = getNextInColumn(objScript);
+
+			if (objNextScript == null) {
+			
+				objScript = getNextInColumnNoCheck (objScript);
+				return objScript;
+			} else {
+				objScript = objNextScript;
+			}
+		}	
+
+		return null;
+	}
 
 
 

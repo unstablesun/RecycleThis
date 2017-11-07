@@ -182,15 +182,15 @@ public partial class HexManager : MonoBehaviour
 
 
 			if(lineCount == 0 || lineCount == HexGridWidth-1 || rowCount == 0 || rowCount == HexGridHeight-1) {
+				
 				objectScript.SetToNullObject();
 				objectScript.SetObjectColor(128, 128, 128, 200);
 
 				objectScript._Type = HexObject.eType.Edge;
 
 				if(rowCount == 0 && lineCount > 0 && lineCount < HexGridWidth-1) {
-				
+					objectScript.SpecialType = HexObject.eSpecialType.TopRow;
 				}
-
 
 			} else {
 			

@@ -148,18 +148,22 @@ public class GridLogic : MonoBehaviour
 
 				//is animation still active
 
-				//if(IsFallAnimating() == false) {
-				_State = eGridState.ScanMatches;
-				//}
+				if(IsFallAnimating() == false) {
+					_State = eGridState.ScanMatches;
+				}
 
 			break;
 
 			case eGridState.SwapAnimation:
-				if(IsFallAnimating() == false) {
+				if (IsFallAnimating () == false) {
 
-					Debug.Log("SwapAnimation DONE Changing STATE");
+					Debug.Log ("SwapAnimation DONE Changing STATE");
 
 					_State = eGridState.ScanMatches;
+				} else {
+				
+					Debug.LogError ("SwapAnimation IsFallAnimating = true");
+
 				}
 
 			break;
@@ -300,7 +304,6 @@ public class GridLogic : MonoBehaviour
 
 	private void BackFill ()
 	{
-
 		HexManager.Instance.QueryScanForFill ();
 	}
 

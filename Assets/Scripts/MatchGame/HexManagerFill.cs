@@ -47,12 +47,28 @@ public partial class HexManager : MonoBehaviour
 
 				if(gem != null) {
 
+					Debug.LogError("New Gem");
+
 					int colorType = (int)Random.Range (0, count);
+
+					//we have a new gem for the empty cell but need to animate it in from the top
 
 					GemObject gemScript = gem.GetComponent<GemObject> ();
 					gemScript.SetGemSprite(GridLogic.Instance.GemObjectList[colorType], (GemObject.eColorType) colorType);
 
-					objScript.AttachGem(gem);
+					//objScript.AttachGem(gem);
+					objScript.AttachGemNoPos (gem);
+
+					//set top row hex
+					HexObject topScript = ScanColumnForTopHex (objScript);
+					if (topScript != null) {
+						objScript.AttachOffsetHexRef (topScript.gameObject);
+					}
+
+
+
+					objScript.MoveGemToThisHex ();
+
 				}
 
 

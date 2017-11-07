@@ -28,7 +28,7 @@ public class TapPadController : MonoBehaviour
 	
 	void Update () 
 	{
-		#if UNITY_EDITOR
+		//#if UNITY_EDITOR
 
 		if(GridLogic.Instance._State != GridLogic.eGridState.AllowInput){
 			return;
@@ -114,7 +114,7 @@ public class TapPadController : MonoBehaviour
 			}
 		*/
 
-		#endif
+		//#endif
 
 		#if UNITY_ANDROID || UNITY_IPHONE
 
