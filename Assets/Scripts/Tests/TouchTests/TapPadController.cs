@@ -116,19 +116,19 @@ public class TapPadController : MonoBehaviour
 
 		//#endif
 
-		#if UNITY_ANDROID || UNITY_IPHONE
+		//#if UNITY_ANDROID || UNITY_IPHONE
 
-		if (Input.touchCount != 1)
-		{
-			return;
-		}
-
-
-		Touch touch = Input.touches[0];
-		Vector3 touchPos = touch.position;
+		//if (Input.touchCount != 1)
+		//{
+		//	return;
+		//}
 
 
-		#endif
+		//Touch touch = Input.touches[0];
+		//Vector3 touchPos = touch.position;
+
+
+		//#endif
 
 
 

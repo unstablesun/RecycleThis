@@ -41,4 +41,15 @@ public partial class HexManager : MonoBehaviour
 	}
 
 
+	public void DebugButton1()
+	{
+		Debug.LogWarning ("DebugButton1 Fill");
+		QueryFillAnimationStillActiveDebug ();
+
+
+		Debug.LogWarning ("DebugButton1 Fall");
+		QueryFallAnimationStillActiveDebug ();
+	}
+
+
 }

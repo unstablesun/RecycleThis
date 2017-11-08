@@ -146,11 +146,18 @@ public class GemObject : MonoBehaviour
 
 		gemAnimSequence = DOTween.Sequence ().SetEase (Ease.InQuart);
 		gemAnimSequence.Append(transform.DOMove(new Vector3(endx, endy, z), speed));
-		gemAnimSequence.Append(transform.DOPunchPosition( new Vector3(0.0f, 0.1f, 0.0f), 1f, 4, 0.75f ).OnComplete(FallSequenceComplete));
+		gemAnimSequence.Append(transform.DOPunchPosition( new Vector3(0.0f, 0.1f, 0.0f), 1f, 4, 0.75f ).OnComplete(FillSequenceComplete));
 		AnimState = eAnimState.Active;
 
 	}
 
+	void FillSequenceComplete () 
+	{
+		//wait = 0;
+		//transform.position = new Vector3 (sx, sy, sz);
+		//StartAnim (sx, sy - 7f, sz, 0.25f);
+		AnimState = eAnimState.Ready;
+	}
 
 
 

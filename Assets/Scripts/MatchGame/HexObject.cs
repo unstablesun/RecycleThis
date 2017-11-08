@@ -122,11 +122,8 @@ public class HexObject : MonoBehaviour
 	public void AttachGemNoPos (GameObject go) 
 	{
 		Assert.IsNotNull(go);
-		//Assert.IsNull(GemRef);
 
-		if (GemRef == null) {
-			GemRef = go;
-		}
+		GemRef = go;
 	}
 
 	public void ClearGem () 
@@ -318,7 +315,7 @@ public class HexObject : MonoBehaviour
 			if(GemRef != null) {
 				GemObject gemObjectScript = GemRef.GetComponent<GemObject> ();
 				Debug.LogError("StartFillAnim");
-				gemObjectScript.StartFillAnim(startpos.x, startpos.y, transform.position.x, transform.position.y, -3f, 0.5f);
+				gemObjectScript.StartFillAnim(startpos.x, startpos.y + 4f, transform.position.x, transform.position.y, -3f, 0.5f);
 			} else {
 				Debug.LogError("ASSERT MoveGemToThisHex GemRef == null");
 			}
@@ -351,5 +348,12 @@ public class HexObject : MonoBehaviour
 		return aState;
 	}
 
+	public void DebugPrintGemID()
+	{
+		if (GemRef != null) {
+			GemObject objectScript = GemRef.GetComponent<GemObject> ();
+			Debug.LogWarning ("still animating : gemID" + objectScript.ID);
+		}
+	}
 
 }

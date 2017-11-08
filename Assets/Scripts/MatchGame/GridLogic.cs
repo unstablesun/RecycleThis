@@ -57,7 +57,12 @@ public class GridLogic : MonoBehaviour
 		}
 	}
 
-	
+	public void DebugPrintGridState () 
+	{
+		Debug.LogError ("Grid Logic state = " + _State.ToString());
+
+	}
+
 	void Update () 
 	{
 		switch( _State )
@@ -148,7 +153,7 @@ public class GridLogic : MonoBehaviour
 
 				//is animation still active
 
-				if(IsFallAnimating() == false) {
+				if(IsFillAnimating() == false) {
 					_State = eGridState.ScanMatches;
 				}
 
@@ -294,6 +299,13 @@ public class GridLogic : MonoBehaviour
 	{
 		return (HexManager.Instance.QueryFallAnimationStillActive () );
 	}
+
+	private bool IsFillAnimating ()
+	{
+		return (HexManager.Instance.QueryFillAnimationStillActive () );
+	}
+
+
 
 	private void TryScanForFall ()
 	{

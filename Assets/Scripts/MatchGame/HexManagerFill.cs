@@ -61,6 +61,7 @@ public partial class HexManager : MonoBehaviour
 
 					//set top row hex
 					HexObject topScript = ScanColumnForTopHex (objScript);
+					Debug.LogWarning ("ScanColumnForTopHex ID = " + topScript.ID);
 					if (topScript != null) {
 						objScript.AttachOffsetHexRef (topScript.gameObject);
 					}
@@ -85,5 +86,41 @@ public partial class HexManager : MonoBehaviour
 		return columnDone;
 	}
 
+	public bool QueryFillAnimationStillActive() 
+	{
+		bool active = false;
+		foreach(GameObject tObj in HexObjectList)
+		{
+			HexObject objectScript = tObj.GetComponent<HexObject> ();
+			if (objectScript._Type == HexObject.eType.Main) {
+
+				if(objectScript.IsGemAnimating(0)) {
+					active = true;
+				}
+			}
+		}
+
+		return active;
+	}
+
+	//debug
+	public bool QueryFillAnimationStillActiveDebug() 
+	{
+		bool active = false;
+		foreach(GameObject tObj in HexObjectList)
+		{
+			HexObject objectScript = tObj.GetComponent<HexObject> ();
+			if (objectScript._Type == HexObject.eType.Main) {
+
+				if(objectScript.IsGemAnimating(0)) {
+					active = true;
+
+					objectScript.DebugPrintGemID ();
+				}
+			}
+		}
+
+		return active;
+	}
 
 }

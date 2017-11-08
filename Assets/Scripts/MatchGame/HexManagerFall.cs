@@ -177,9 +177,16 @@ public partial class HexManager : MonoBehaviour
 
 	private HexObject getNextInColumnNoCheck(HexObject objectScript) 
 	{
-		List <GameObject> sublinkList = objectScript.HexLinkList;
-		HexObject objScript = sublinkList[0].GetComponent<HexObject>();
-		return objScript;
+		if (objectScript.HexLinkList != null) {
+			
+			Debug.LogWarning ("getNextInColumnNoCheck ID = " + objectScript.ID);
+
+			List <GameObject> sublinkList = objectScript.HexLinkList;
+			HexObject objScript = sublinkList [0].GetComponent<HexObject> ();
+			return objScript;
+		}
+
+		return null;
 	}
 
 
@@ -191,18 +198,34 @@ public partial class HexManager : MonoBehaviour
 			HexObject objectScript = tObj.GetComponent<HexObject> ();
 			if (objectScript._Type == HexObject.eType.Main) {
 
-				//if (objectScript.MarkedColor != (int)GemObject.eColorType.Black) {
-
-					if(objectScript.IsGemAnimating(0)) {
-						active = true;
-					}
-				//}
+				if(objectScript.IsGemAnimating(0)) {
+					active = true;
+				}
 			}
 		}
 
 		return active;
 	}
 
+	//debug
+	public bool QueryFallAnimationStillActiveDebug() 
+	{
+		bool active = false;
+		foreach(GameObject tObj in HexObjectList)
+		{
+			HexObject objectScript = tObj.GetComponent<HexObject> ();
+			if (objectScript._Type == HexObject.eType.Main) {
+
+				if(objectScript.IsGemAnimating(0)) {
+					active = true;
+
+					objectScript.DebugPrintGemID ();
+				}
+			}
+		}
+
+		return active;
+	}
 
 	/*
 	public void QueryMoveGemsToNewHexes() 
@@ -258,10 +281,12 @@ public partial class HexManager : MonoBehaviour
 
 			if (objNextScript == null) {
 			
-				objScript = getNextInColumnNoCheck (objScript);
 				return objScript;
+
 			} else {
+				
 				objScript = objNextScript;
+
 			}
 		}	
 
