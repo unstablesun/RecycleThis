@@ -100,6 +100,18 @@ public class HexObject : MonoBehaviour
 		tapPadSprite.SetActive(false);
 	}
 
+	public void SetBackingSpriteScale (float sx, float sy) 
+	{
+		if(backingSprite != null){
+			backingSprite.transform.localScale = new Vector2( sx, sy);
+		}
+	}
+	public void SetTapPadSpriteScale (float sx, float sy) 
+	{
+		if(tapPadSprite != null){
+			tapPadSprite.transform.localScale = new Vector2( sx, sy);
+		}
+	}
 
 	public void InitHexLinkList () 
 	{

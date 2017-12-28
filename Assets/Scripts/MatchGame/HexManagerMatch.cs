@@ -57,7 +57,7 @@ public partial class HexManager : MonoBehaviour
 				QueryClearScan ();
 				ScannedLinkedList.Clear ();
 
-				//do link walk
+ 				//do link walk
 				GemObject.eColorType colorType = objectScript.GetGemRefColorType ();
 				objectScript.ScanColor = (int)colorType;
 

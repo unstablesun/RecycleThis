@@ -15,6 +15,10 @@ public class GemManager : MonoBehaviour
 
 	public static GemManager Instance;
 
+	public float GemScaleX = 0.6f;
+	public float GemScaleY = 0.6f;
+
+
 	void Awake () 
 	{
 		Instance = this;
@@ -55,6 +59,7 @@ public class GemManager : MonoBehaviour
 
 				GemObject objectScript = _sfObj.GetComponent<GemObject> ();
 				objectScript.ID = t;
+				objectScript.SetGemSpriteScale(GemScaleX, GemScaleY);
 
 				GemObjectList.Add (_sfObj);
 

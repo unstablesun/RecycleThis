@@ -74,11 +74,17 @@ public class GemObject : MonoBehaviour
 
 	public void SetGemSprite (GameObject go, eColorType ctype) 
 	{
-		gemSprite.GetComponent<SpriteRenderer>().sprite= go.GetComponent<SpriteRenderer>().sprite;
+		gemSprite.GetComponent<SpriteRenderer>().sprite = go.GetComponent<SpriteRenderer>().sprite;
 
 		ColorType = ctype;
 	}
 		
+	public void SetGemSpriteScale (float sx, float sy) 
+	{
+		if(gemSprite != null){
+			gemSprite.transform.localScale = new Vector2( sx, sy);
+		}
+	}
 
 	public void StartAnim (float endx, float endy, float z, float offsetx, float speed) 
 	{

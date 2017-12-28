@@ -5,6 +5,7 @@ using UnityEngine.Assertions;
 
 public partial class HexManager : MonoBehaviour 
 {
+	
 	public int objectPoolSize = 128;
 
 	public float HexGridWidth = 4f;
@@ -12,6 +13,12 @@ public partial class HexManager : MonoBehaviour
 	public float HexGridDX = 1f;
 	public float HexGridDY = 1f;
 	public float HexSkipDY = 0.5f;
+
+	public float HexBackingScaleX = 0.5f;
+	public float HexBackingScaleY = 0.5f;
+
+	public float TapPadScaleX = 1.0f;
+	public float TapPadScaleY = 1.6f;
 
 	public GameObject StoragePosition;
 	public GameObject StartGridPosition;
@@ -105,6 +112,7 @@ public partial class HexManager : MonoBehaviour
 		objectScriptB.AttachGemNoPos(GemRefA);
 
 
+
 		return true;
 	}
 
@@ -129,6 +137,8 @@ public partial class HexManager : MonoBehaviour
 
 				HexObject objectScript = _sfObj.GetComponent<HexObject> ();
 				objectScript.ID = t;
+				objectScript.SetBackingSpriteScale(HexBackingScaleX, HexBackingScaleY);
+				objectScript.SetTapPadSpriteScale(TapPadScaleX, TapPadScaleY);
 
 				HexObjectList.Add (_sfObj);
 
