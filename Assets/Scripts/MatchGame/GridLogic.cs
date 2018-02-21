@@ -89,6 +89,7 @@ public class GridLogic : MonoBehaviour
 				_State = eGridState.Removal;
 
 				break;
+
 			case eGridState.EmptyScan:
 				TryMatch ();
 				_State = eGridState.Removal;
@@ -213,7 +214,8 @@ public class GridLogic : MonoBehaviour
 	}
 
 
-
+	//These arrays need to match current sizes
+	
 	int[] PreConfigBoard1 = 
 	{ 
 		0, 1, 2, 3, 4, 
@@ -288,7 +290,12 @@ public class GridLogic : MonoBehaviour
 		
 	private bool TryRemoval ()
 	{
-		return (HexManager.Instance.QueryScanForRemoval () );
+		bool result = HexManager.Instance.QueryScanForRemoval ();
+		if(result){
+			HexManager.Instance.QueryProcessForRemoval();
+		}
+
+		return ( result );
 	}
 
 	private bool IsRemovalAnimating ()

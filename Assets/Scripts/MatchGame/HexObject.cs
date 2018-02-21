@@ -57,6 +57,7 @@ public class HexObject : MonoBehaviour
 		set {_id = value; }
 	}
 
+	public Vector3 RemovalDestinationV3;
 
 	public List <GameObject> HexLinkList = null;
 
@@ -112,6 +113,13 @@ public class HexObject : MonoBehaviour
 			tapPadSprite.transform.localScale = new Vector2( sx, sy);
 		}
 	}
+
+	public void SetRemovalDestinationV3 ( Vector3 v) 
+	{
+		RemovalDestinationV3 = new Vector3(v.x, v.y, v.z);
+	}
+
+
 
 	public void InitHexLinkList () 
 	{
@@ -249,7 +257,7 @@ public class HexObject : MonoBehaviour
 		if (GemRef != null) {
 			GemObject objectScript = GemRef.GetComponent<GemObject> ();
 		
-			objectScript.StartRemovalAnim(0f, 2f, -3f, 1f);
+			objectScript.StartRemovalAnim(RemovalDestinationV3.x, RemovalDestinationV3.y, -7f, 1f);
 
 		} else {
 			return false;
