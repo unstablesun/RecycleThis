@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+
 public partial class HexManager : MonoBehaviour 
 {
 	
@@ -19,6 +20,10 @@ public partial class HexManager : MonoBehaviour
 
 	public float TapPadScaleX = 1.0f;
 	public float TapPadScaleY = 1.6f;
+
+	public float SwapSpeed = 0.3f;
+	public float FallSpeed = 0.3f;
+	public float RemovalSpeed = 0.3f;
 
 	public GameObject StoragePosition;
 	public GameObject StartGridPosition;
@@ -96,14 +101,14 @@ public partial class HexManager : MonoBehaviour
 
 		if(GemRefA != null) {
 			GemObject gemObjectScript = GemRefA.GetComponent<GemObject> ();
-			gemObjectScript.StartFallAnim(newposB.x, newposB.y, -3f, 0.5f);
+			gemObjectScript.StartFallAnim(newposB.x, newposB.y, -3f, SwapSpeed);
 		} else {
 			Debug.Log("ASSERT MoveGemToNewHex GemRef == null");
 		}
 
 		if(GemRefB != null) {
 			GemObject gemObjectScript = GemRefB.GetComponent<GemObject> ();
-			gemObjectScript.StartFallAnim(newposA.x, newposA.y, -3f, 0.5f);
+			gemObjectScript.StartFallAnim(newposA.x, newposA.y, -3f, SwapSpeed);
 		} else {
 			Debug.Log("ASSERT MoveGemToNewHex GemRef == null");
 		}

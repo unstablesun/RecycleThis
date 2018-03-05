@@ -50,6 +50,7 @@ public class HexObject : MonoBehaviour
 	public int Debug_ID_;
 	public int Debug_ScanColor_;
 	public int Debug_MarkedColor_;
+	public float FallSpeed = 0.3f;
 
 	private int _id = 0;
 	public int ID {
@@ -257,7 +258,7 @@ public class HexObject : MonoBehaviour
 		if (GemRef != null) {
 			GemObject objectScript = GemRef.GetComponent<GemObject> ();
 		
-			objectScript.StartRemovalAnim(RemovalDestinationV3.x, RemovalDestinationV3.y, -7f, 1f);
+			objectScript.StartRemovalAnim(RemovalDestinationV3.x, RemovalDestinationV3.y, -7f, FallSpeed);
 
 		} else {
 			return false;
@@ -279,7 +280,7 @@ public class HexObject : MonoBehaviour
 
 			if(GemRef != null) {
 				GemObject gemObjectScript = GemRef.GetComponent<GemObject> ();
-				gemObjectScript.StartFallAnim(newpos.x, newpos.y, -3f, 0.5f);
+				gemObjectScript.StartFallAnim(newpos.x, newpos.y, -3f, FallSpeed);
 			} else {
 				Debug.Log("ASSERT MoveGemToNewHex GemRef == null");
 			}
@@ -335,7 +336,7 @@ public class HexObject : MonoBehaviour
 			if(GemRef != null) {
 				GemObject gemObjectScript = GemRef.GetComponent<GemObject> ();
 				Debug.LogError("StartFillAnim");
-				gemObjectScript.StartFillAnim(startpos.x, startpos.y + 4f, transform.position.x, transform.position.y, -3f, 0.5f);
+				gemObjectScript.StartFillAnim(startpos.x, startpos.y + 4f, transform.position.x, transform.position.y, -3f, FallSpeed);
 			} else {
 				Debug.LogError("ASSERT MoveGemToThisHex GemRef == null");
 			}
