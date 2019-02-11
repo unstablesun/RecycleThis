@@ -168,7 +168,7 @@ public class GridLogic : MonoBehaviour
 					_State = eGridState.ScanMatches;
 				} else {
 				
-					Debug.LogError ("SwapAnimation IsFallAnimating = true");
+					Debug.Log ("SwapAnimation IsFallAnimating = true");
 
 				}
 

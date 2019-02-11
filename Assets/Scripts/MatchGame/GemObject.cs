@@ -146,7 +146,7 @@ public class GemObject : MonoBehaviour
 
 	public void StartFillAnim (float startx, float starty, float endx, float endy, float z, float speed) 
 	{
-		Debug.LogError("startX = " + startx + " StartY = " + starty);
+		Debug.Log("startX = " + startx + " StartY = " + starty);
 		//start pos
 		transform.position = new Vector3( startx, starty, z);
 

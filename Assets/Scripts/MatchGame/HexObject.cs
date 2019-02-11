@@ -236,7 +236,10 @@ public class HexObject : MonoBehaviour
 		Debug_MarkedColor_ = MarkedColor;
 
 		TMP_Text m_text = textObj.GetComponent<TextMeshPro>();
-		m_text.text = ID.ToString();
+		if(m_text != null)
+		{
+			m_text.text = ID.ToString();
+		}
 		//-------------
 	}
 
@@ -335,10 +338,10 @@ public class HexObject : MonoBehaviour
 
 			if(GemRef != null) {
 				GemObject gemObjectScript = GemRef.GetComponent<GemObject> ();
-				Debug.LogError("StartFillAnim");
+				Debug.Log("StartFillAnim");
 				gemObjectScript.StartFillAnim(startpos.x, startpos.y + 4f, transform.position.x, transform.position.y, -3f, FallSpeed);
 			} else {
-				Debug.LogError("ASSERT MoveGemToThisHex GemRef == null");
+				Debug.Log("ASSERT MoveGemToThisHex GemRef == null");
 			}
 
 			OffsetHexRef = null;//no longer needed

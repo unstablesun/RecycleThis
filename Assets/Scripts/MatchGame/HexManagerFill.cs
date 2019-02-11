@@ -47,7 +47,7 @@ public partial class HexManager : MonoBehaviour
 
 				if(gem != null) {
 
-					Debug.LogError("New Gem");
+					Debug.Log("New Gem");
 
 					int colorType = (int)Random.Range (0, count);
 
