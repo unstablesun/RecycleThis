@@ -135,7 +135,7 @@ public class SquareGridObject : MonoBehaviour
 		Debug_MarkedColor_ = MarkedColor;
 
 		TMP_Text m_text = textObj.GetComponent<TextMeshPro>();
-		m_text.text = ID.ToString();
+		//m_text.text = ID.ToString();
 		//-------------
 	}
 
