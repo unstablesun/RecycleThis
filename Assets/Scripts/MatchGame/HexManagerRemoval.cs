@@ -21,11 +21,12 @@ public partial class HexManager : MonoBehaviour
 		RemovalBlueList = new List<GameObject>();
 		RemovalYellowList = new List<GameObject>();
 		RemovalCyanList = new List<GameObject>();
+        RemovalPurpleList = new List<GameObject>();
 
 
-	}
+    }
 
-	public void AddRemovalObject(GameObject tObj) 
+    public void AddRemovalObject(GameObject tObj) 
 	{
 		HexObject objectScript = tObj.GetComponent<HexObject> ();
 
@@ -49,17 +50,22 @@ public partial class HexManager : MonoBehaviour
 			if (RemovalCyanList != null) {
 				RemovalCyanList.Add (tObj);
 			}
-		}
+		}if (objectScript.MarkedColor == (int)GemObject.eColorType.Purple) {
+            if (RemovalPurpleList != null){
+                RemovalPurpleList.Add(tObj);
+            }
+        }
+    }
 
 
-	}
 
 
-	//-------------------------------------------------
-	//				Collect for Removal
-	//-------------------------------------------------
 
-	public bool QueryScanForRemoval() 
+//-------------------------------------------------
+//				Collect for Removal
+//-------------------------------------------------
+
+public bool QueryScanForRemoval() 
 	{
 		ClearRemovalLists();
 
@@ -99,9 +105,10 @@ public partial class HexManager : MonoBehaviour
 		_processForRemoval(RemovalBlueList);
 		_processForRemoval(RemovalYellowList);
 		_processForRemoval(RemovalCyanList);
-	}
+        _processForRemoval(RemovalPurpleList);
+    }
 
-	public void _processForRemoval(List<GameObject> _colorlist) 
+    public void _processForRemoval(List<GameObject> _colorlist) 
 	{
 		if (_colorlist != null) {
 
@@ -192,7 +199,14 @@ public partial class HexManager : MonoBehaviour
 				Debug.Log("cyan");
 			}
 		}
-	}
+        if (RemovalPurpleList != null)
+        {
+            foreach (GameObject tObj in RemovalPurpleList)
+            {
+                Debug.Log("purple");
+            }
+        }
+}
 
 
 }
